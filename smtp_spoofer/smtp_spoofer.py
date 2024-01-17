@@ -2,6 +2,7 @@ import sys, socket
 
 size = 1024
 
+
 def send_smtp(smtp_server, port, sender, receiver, message_payload):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((smtp_server, port))
@@ -20,6 +21,7 @@ def send_smtp(smtp_server, port, sender, receiver, message_payload):
         print(s.recv(size).decode())
         s.send(b'QUIT\n')
 
+
 def main(args):
     smtp_addr = args[1]
     port = args[2]
@@ -28,6 +30,7 @@ def main(args):
     data = args[5]
     send_smtp(smtp_addr, port, sender, receiver, data)
     print('message was successfully sent')
+
 
 if __name__ == '__main__':
     main(sys.argv)
